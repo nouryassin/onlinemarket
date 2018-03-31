@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script src="webjars/jquery/2.0.3/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-light bg-faded">
+ 
+    <a class="navbar-brand" href="#">Online Market</a>
+    <ul class="navbar-nav mr-auto mt-2 ">
+      <li class="nav-item">
+        <a class="nav-link active " href="/onlineMarket">Log Out</a>
+      </li>
+    </ul>
+</nav>
+
+	<form class="form-group ml-5" method="post" th:action="@{/addUser}" th:object="${user}"  onsubmit="return validate()" >
+		<table>
+                <tr>
+                    <td>Username:</td>
+                    <td><input type="text" class="form-control mr-sm-2" id="username" required th:field="*{username}" /></td>
+                </tr>
+				<tr>
+                    <td>Password:</td>
+                    <td><input type="password" class="form-control mr-sm-2" id="password" required  th:field="*{password}" /></td>
+                </tr>
+				<tr>
+                    <td>Email:</td>
+                    <td><input type="email" class="form-control mr-sm-2" id="email" required  th:field="*{email}" /></td>
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text"  class="form-control mr-sm-2" id="name" required  th:field="*{name}" /></td>
+                    
+                </tr>
+                <tr>
+                    <td>Your Type:</td>
+                    <td><input type="text"  class="form-control mr-sm-2" id="type" required  th:field="*{type}" /></td>
+                </tr>
+                <tr>
+                    <td><input type="submit"class="btn btn-outline-success" value="Register"/></td>
+                </tr>
+          </table>
+	</form> 
+
+    <script type="text/javascript" src="script.js"></script>
+    
+</body>
+</html>
