@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<form method="post" th:action="@{/Edited}" th:object="${editoffer}">
+		<table>
+	        <tr>
+	            <td>Product Name :</td>
+	            <td><input type="text" class="form-control mr-sm-2" required th:field="*{productName}" th:value="*{productName}" disabled/></td>
+	            <td><input type="text" class="form-control mr-sm-2" name="discount" required th:field="*{discount}" th:value="*{discount}" /></td>
+	        	<td><input type="submit" class="btn btn-outline-success" value="Edit this Offer" /></td>
+	        </tr>
+	    </table>
+   </form>
+
+</body>
+</html>

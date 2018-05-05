@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<form th:action="saveProduct" th:object="${productstore}" method="POST">
+		<input type="text" th:field="*{product_name}" />
+		<input type="number" th:field="*{Quantity}" />
+		<select name="storeid" >
+			<option th:each="store: ${onlinestore}" 
+					th:text="${store.getStore_name()}" 
+					th:value="${store.getId()}"
+					th:selected="${store.getId()}"
+			>
+		</select>
+		<select name="brandid" >
+			<option th:each="brand: ${Brand}" 
+					th:text="${brand.getBrand_name()}" 
+					th:value="${brand.getId()}"
+					th:selected="${brand.getId()}"
+			>
+		</select>
+		<button type="submit">Add Product To Store</button>
+	</form>
+</body>
+</html>

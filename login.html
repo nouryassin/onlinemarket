@@ -11,17 +11,16 @@
 		<table>
             <tr>
                 <td>Username:</td>
-                <td><input class="form-control mr-sm-2" type="text" required th:field="*{username}" /></td>
-                <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</td>
+                <td><input name="uname" id="username" class="form-control mr-sm-2" type="text" required  /></td>
             </tr>
 			<tr>
                 <td>Password:</td>
-                <td><input type="password" class="form-control mr-sm-2" required th:field="*{password}" /></td>
+                <td><input name="pass"  id="password" type="password" class="form-control mr-sm-2" required /></td>
                 <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</td>
              </tr>
 
             <tr>
-                <td><input type="submit" class="btn btn-outline-success" value="Login"/></td>
+                <td><input type="submit" id="login" class="btn btn-outline-success" value="Login"/></td>
             </tr>
           </table>
 	</form>

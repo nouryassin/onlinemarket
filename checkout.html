@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form method="post" th:action="@{/checkout}" th:object="${pro}">
+	<table>
+        <tr>
+            <td>Product Name :</td>
+            <td><input type="text" class="form-control mr-sm-2" required th:field="*{product_name}" th:value="*{product_name}" disabled/></td>
+        </tr>
+        <tr>
+            <td>price</td>
+            <td><input type="text" class="form-control mr-sm-2" required  th:value="*{price}"  th:field="*{price}" disabled/></td>
+        </tr>
+        <tr>
+            <td>its Quantity</td>
+            <td><input type="text" class="form-control mr-sm-2" required  th:value="*{Quantity}"  th:field="*{Quantity}" disabled/></td>
+        </tr>
+        <tr>
+            <td>discount value (%)</td>
+            <td><input type="text" class="form-control mr-sm-2" required  th:value="*{Buyers}"  th:field="*{Buyers}" disabled/></td>
+        </tr>
+       
+        <tr>
+            <td><input type="submit" id="checkout" class="btn btn-outline-success" value="checkout" /></td>
+        </tr>
+  	</table>
+	</form>
+	<br/><br/><br/>
+
+</body>
+</html>

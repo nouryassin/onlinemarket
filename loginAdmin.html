@@ -12,14 +12,14 @@
 		<table>
                 <tr>
                     <td>Username:</td>
-                    <td><input type="text" th:field="*{username}" class="form-control mr-sm-2" required /></td>
+                    <td><input type="text" id="username" th:field="*{username}" class="form-control mr-sm-2" required /></td>
                 </tr>
 				<tr>
                     <td>Password:</td>
-                    <td><input type="password" required  class="form-control mr-sm-2" th:field="*{password}" /></td>
+                    <td><input type="password"id="password" required  class="form-control mr-sm-2" th:field="*{password}" /></td>
                 </tr>
                 <tr>
-                    <td><input type="submit" class="btn btn-outline-success" value="Login"/></td>
+                    <td><input type="submit" id="login"  class="btn btn-outline-success" value="Login"/></td>
                 </tr>
           </table>
 	</form> 
