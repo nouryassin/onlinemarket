@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,11 +13,15 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.springframework.context.annotation.Scope;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
@@ -30,8 +35,25 @@ public class User {
  	protected String password;
  	protected String name;
  	protected String type;
+ 	private boolean first=true;
  
- 	
+ 	public boolean isFirst() {
+		return first;
+	}
+	public void setFirst(boolean first) {
+		this.first = first;
+	}
+
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="storeowner", fetch=FetchType.EAGER,targetEntity=OnlineStore.class)
+	private List<OnlineStore> stores;
+	public List<OnlineStore> getStores() {
+		return stores;
+	}
+ 	public void setStores(List<OnlineStore> stores) {
+		this.stores = stores;
+	}
+	
+
 	public Integer getId() {
 		return id;
 	}

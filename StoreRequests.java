@@ -1,5 +1,4 @@
 package com.example.demo.entities;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,7 +16,14 @@ public class StoreRequests  {
 	private String store_name;
 	private String store_location;
 	private String store_type;
+	private int storeowner_id;
 	
+	public int getStoreowner_id() {
+		return storeowner_id;
+	}
+	public void setStoreowner_id(int storeowner_id) {
+		this.storeowner_id = storeowner_id;
+	}
 	public int getId() {
 		return id;
 	}

@@ -15,7 +15,7 @@ public class ProductStore {
 	
 		@Id
 	    @GeneratedValue(strategy=GenerationType.AUTO)
-	    private Integer id;
+	    private int id;
 	 	private String product_name;
 		private String brand_name;
 	 	private String store_name;
