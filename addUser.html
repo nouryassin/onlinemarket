@@ -22,27 +22,33 @@
 		<table>
                 <tr>
                     <td>Username:</td>
-                    <td><input type="text" class="form-control mr-sm-2" id="username" required th:field="*{username}" /></td>
+                    <td><input id="username" type="text" class="form-control mr-sm-2" required th:field="*{username}" /></td>
                 </tr>
 				<tr>
                     <td>Password:</td>
-                    <td><input type="password" class="form-control mr-sm-2" id="password" required  th:field="*{password}" /></td>
+                    <td><input id="password" type="password" class="form-control mr-sm-2" required  th:field="*{password}" /></td>
                 </tr>
 				<tr>
                     <td>Email:</td>
-                    <td><input type="email" class="form-control mr-sm-2" id="email" required  th:field="*{email}" /></td>
+                    <td><input id="email" type="email" class="form-control mr-sm-2"  required  th:field="*{email}" /></td>
                 </tr>
                 <tr>
                     <td>Name:</td>
-                    <td><input type="text"  class="form-control mr-sm-2" id="name" required  th:field="*{name}" /></td>
+                    <td><input type="text" id="name" class="form-control mr-sm-2"  required  th:field="*{name}" /></td>
                     
                 </tr>
                 <tr>
                     <td>Your Type:</td>
-                    <td><input type="text"  class="form-control mr-sm-2" id="type" required  th:field="*{type}" /></td>
+                    <td>
+                    	<select id="type" th:field="*{type}">
+	                    	<option th:text="storeowner" th:value="storeowner"></option>
+	                    	<option th:text="buyer" th:value="buyer"></option>
+	                    
+                    	</select>
+                    </td>
                 </tr>
                 <tr>
-                    <td><input type="submit"class="btn btn-outline-success" value="Register"/></td>
+                    <td><input type="submit" id="register" class="btn btn-outline-success" value="Register"/></td>
                 </tr>
           </table>
 	</form> 

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+<a href="#" id="BuyerHome">BuyerHome</a>
+	<nav class="navbar navbar-light bg-faded">
+	    <a class="navbar-brand" href="#">Online Market</a>
+	    <ul class="navbar-nav mr-auto mt-2 ">
+	      <li class="nav-item">
+	        <a class="nav-link active " href="/buyerHome">Go back</a>
+	      </li>
+	    </ul>
+	</nav>
+	<form method="post" th:action="@{/viewProduct}" th:object="${productstore}">
+	<table>
+        <tr>
+            <td>Product Name :</td>
+            <td><input type="text" class="form-control mr-sm-2" required th:field="*{product_name}" th:value="*{product_name}" disabled/></td>
+        </tr>
+		<tr>
+            <td>Store Name</td>
+            <td><input type="text" class="form-control mr-sm-2"  required  th:value="*{store_name}" th:field="*{store_name}" disabled /></td>
+        </tr>
+		<tr>
+            <td>Brand Name</td>
+            <td><input type="text" class="form-control mr-sm-2" required  th:value="*{brand_name}" th:field="*{brand_name}" disabled/></td>
+        </tr>
+        <tr>
+            <td>price</td>
+            <td><input type="text" class="form-control mr-sm-2" required  th:value="*{price}"  th:field="*{price}" disabled/></td>
+        </tr>
+        <tr>
+            <td>its Quantity</td>
+            <td><input type="text" class="form-control mr-sm-2" required  th:value="*{Quantity}"  th:field="*{Quantity}" disabled/></td>
+        </tr>
+        
+        <tr>
+            <td>Enter Quantity you want </td>
+            <td><input id="quantity" name="quant" type="digit" class="form-control mr-sm-2" required   /></td>
+        </tr>
+        <tr>
+            <td>Enter your shipping address</td>
+            <td><input id="address" type="text" class="form-control mr-sm-2" required  /></td>
+        </tr>
+        <tr>
+            <td>Agree on terms and condition  </td>
+            <td><input id="checkbox" type="checkbox" required /> </td>
+        </tr>
+        <tr>
+            <td><input id="buy" type="submit" class="btn btn-outline-success" value="Buy this product" /></td>
+        </tr>
+  	</table>
+	</form>
+	<br/><br/><br/>
+
+</body>
+</html>

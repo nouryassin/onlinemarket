@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-light bg-faded">
+ 
+    <a class="navbar-brand" href="#">Online Market</a>
+    <ul class="navbar-nav mr-auto mt-2 ">
+      <li class="nav-item">
+        <a class="nav-link active" id="logout" href="/onlineMarket">Log Out</a>
+      </li>
+    </ul>
+</nav>
+<div class="container">
+	<form method="post" th:action="@{/storeownerHome}" th:object="${storerequest}">
+	<table>
+        <tr>
+            <td>Store Name :</td>
+            <td><input id="storeName" type="text" class="form-control mr-sm-2" required th:field="*{store_name}" /></td>
+        </tr>
+		<tr>
+            <td>Store Location </td>
+            <td><input type="text" id="storeLocation" class="form-control mr-sm-2"  required  th:field="*{store_location}" /></td>
+        </tr>
+		<tr>
+            <td>Store Type (Online , Onsite):</td>
+            <td><select id="storeType" th:field="*{store_type}" class="form-control" >
+					<option th:text="online" 
+							th:value="online"
+							th:selected="online"
+					>
+					<option th:text="onsite" 
+							th:value="onsite"
+							th:selected="onsite"
+					>
+				</select></td>
+            
+        </tr>
+        <tr>
+        <tr>
+            <td><input type="submit" id="requtstSubmit" class="btn btn-outline-success" value="Request to add Store"/></td>
+        </tr>
+  	</table>
+	</form>
+	<br/><br/><br/>
+	<form th:action="@{/saveProduct}" th:object="${productstore}" method="POST">
+            <td>Product Name :</td>
+            <td><select name="productid" class="form-control" >
+					<option th:each="product: ${Product}" 
+							th:text="${product.getProduct_name()}" 
+							th:value="${product.getId()}"
+							th:selected="${product.getId()}"
+					>
+				</select></td>
+		</tr>
+		<tr>
+            <td>Product Quantity :</td>
+            <td><input type="digit" class="form-control mr-sm-2" name="quan" th:field="*{Quantity}" /></td>
+        </tr>
+		<tr>
+            <td>Product Price :</td>
+            <td><input type="digit" class="form-control mr-sm-2" name="pri" th:field="*{price}" /></td>
+            </tr>
+		<tr>
+            <td>Store Name :</td>
+            <td><select name="storeid" class="form-control" >
+					<option th:each="store: ${onlinestore}" 
+							th:text="${store.getStore_name()}" 
+							th:value="${store.getId()}"
+							th:selected="${store.getId()}"
+					>
+					<option th:each="store2: ${collaboratorstore}" 
+							th:text="${store2.getStore_name()}" 
+							th:value="${store2.getId()}"
+							th:selected="${store2.getId()}"
+					>
+				</select>
+			</td>
+		</tr>
+		<tr>
+            <td>Brand Name</td>
+            <td><select name="brandid" class="form-control">
+					<option th:each="brand: ${Brand}" 
+							th:text="${brand.getBrand_name()}" 
+							th:value="${brand.getId()}"
+							th:selected="${brand.getId()}"
+					>
+				</select></td>
+		</tr>
+		<button id="addProduct" type="submit" class="btn btn-success">Add Product To Store</button>
+	</form>
+	<br/><br/><br/>
+	
+	
+		<h3>Edit/Delete Products</h3>
+	      	<td><form th:action="@{/showToEdit}"  method="POST"  >	
+		            <select id="editproduct" name="productid" class="form-control ml-3 mr-3 ">
+						<td th:each="store : ${editstores}">
+						<option th:each="product: ${store.getStoreproducts()}"
+								th:text="${product.getProduct_name()}" 
+								th:value="${product.getId()}"
+								th:selected="${product.getId()}"
+						/></td>
+						<td th:each="store : ${collastores}">
+						<option th:each=" product: ${store.getStoreproducts()}"
+									th:text="${product.getProduct_name()}" 
+									th:value="${product.getId()}"
+									th:selected="${product.getId()}"
+						/></td>
+					</select>						
+			    <td><button type="submit" id="submitediting" class="ml-3 btn btn-info">Edit</button></td>
+			</form>	</td>
+			<td><form  th:action="@{/delete}" method="post" >
+					<tr><td>Products </td>
+            	<td><select id="deleteproduct" name="productid" class="form-control ml-3 mr-3 ">
+					<td th:each="store : ${editstores}">
+					<option th:each="product: ${store.getStoreproducts()}"
+							th:text="${product.getProduct_name()}" 
+							th:value="${product.getId()}"
+							th:selected="${product.getId()}"
+					/></td>
+					<td th:each="store2 : ${collastores}">
+					<option th:each=" product2: ${store2.getStoreproducts()}"
+								th:text="${product2.getProduct_name()}" 
+								th:value="${product2.getId()}"
+								th:selected="${product2.getId()}"
+					/></td>
+				</select>
+				</td>	
+		    </tr>
+		    
+			    <td><button id="submitdeleteproduct" type="submit" class="ml-3 btn btn-info">Delete</button></td>		
+		</form>
+		</td>
+		<br/><br/><br/>
+		
+			<form th:action="@{/addOffer}" method="POST">
+            <tr><td>Products </td>
+            	<td><select id="productoffer" name="productid" class="form-control ml-3 mr-3 ">
+					<td th:each="store : ${offerstores}">
+					<option th:each="product: ${store.getStoreproducts()}"
+							th:text="${product.getProduct_name()}" 
+							th:value="${product.getId()}"
+							th:selected="${product.getId()}"
+					/></td>
+					<td th:each="store : ${collaofferstores}">
+					<option th:each=" product: ${store.getStoreproducts()}"
+								th:text="${product.getProduct_name()}" 
+								th:value="${product.getId()}"
+								th:selected="${product.getId()}"
+					/></td>
+				</select>
+				</td>	
+		    </tr>
+		    	
+			<tr>
+            <td>Product discount :</td>
+            <td><input id="productdiscount" type="digit" class="form-control mr-sm-2" name="discount"  /></td>
+            </tr>
+	
+		<button type="submit" id="submitaddoffer" class="btn btn-success">Add Offer On Product</button>
+	</form>
+	
+	<br/><br/><br/>
+		
+		<h3>Edit/Delete Offers</h3>
+	      	<td><form th:action="@{/editOffer}"  method="POST"  >	
+		            <select name="offerid" class="form-control ml-3 mr-3 ">
+						<option th:each="offer : ${offers}"
+								th:text="${offer.getProductName()}" 
+								th:value="${offer.getId()}"
+								th:selected="${offer.getId()}"
+						/></td>
+					</select>						
+			    <td><button type="submit" class="ml-3 btn btn-info">Edit</button></td>
+			</form>	</td>
+			<td>
+			<form  th:action="@{/deleteOffer}" method="post" >
+				<select name="offerid" class="form-control ml-3 mr-3 ">
+						<option th:each="offer2 : ${offers}"
+								th:text="${offer2.getProductName()}" 
+								th:value="${offer2.getId()}"
+								th:selected="${offer2.getId()}"
+						/></td>
+					</select>			    
+			    <td><button type="submit" class="ml-3 btn btn-info">Delete</button></td>		
+		</form>
+		</td>
+		<br/><br/><br/>
+		
+		
+	<form th:action="@{/addCollaborator}"  method="POST">
+		<tr>
+            <td>Store Name :</td>
+            <td><select name="storeid" class="form-control">
+					<option th:each="store: ${stores}" 
+							th:text="${store.getStore_name()}" 
+							th:value="${store.getId()}"
+							th:selected="${store.getId()}"
+					>
+				</select></td>
+		</tr>
+		<tr>
+            <td>collaborator Name :</td>
+            <td><select name="collaboratorid" class="form-control">
+					<option th:each="collaborator: ${collaborators}" 
+							th:text="${collaborator.getName()}" 
+							th:value="${collaborator.getId()}"
+							th:selected="${collaborator.getId()}"
+					>
+				</select></td>
+		</tr>
+		<button type="submit" class="btn btn-success">Add Collaborator to Store</button>
+	</form>
+		<br/><br/><br/>
+	
+		<form th:action="@{/undoEditProduct}" method="POST">
+            <tr>
+            	<select name="actionid" class="form-control ml-3 mr-3 ">
+					<option  th:each="action: ${deleteEditactions}"
+						th:text="${action.getProduct_name()}"
+						th:value="${action.getId()}">
+					</option>
+				</select>
+		    </tr>
+	
+			<button type="submit"  class="btn btn-success">Undo Edit Or Delete Product</button>
+		</form>
+		<br/>
+		<form th:action="@{/undoAddProduct}" method="POST">
+            <tr><select name="actionid" class="form-control ml-3 mr-3 ">
+				<option  th:each="action2: ${addactions}"
+					th:text="${action2.getProduct_name()}"
+					th:value="${action2.getId()}"></option>
+					</select>
+		    </tr>
+	
+			<button type="submit" class="btn btn-success">Undo Add Product</button>
+		</form>
+		<br/>
+		<form th:action="@{/undoEditOffer}" method="POST">
+		    <td >Discount value (%) :</td>
+            <tr><select name="actionid" class="form-control ml-3 mr-3 ">
+				<option  th:each="action4: ${deleteEditoffers}"
+					th:text="${action4.getDiscount()}"
+					th:value="${action4.getId()}"> </option>
+					</select>
+		    </tr>
+	
+			<button type="submit" class="btn btn-success">Undo Edit Or Delete Offer</button>
+		</form>
+		<br/>
+		<form th:action="@{/undoAddOffer}" method="POST">
+ 	        <td >Discount value (%) :</td>
+            <tr><select name="actionid" class="form-control ml-3 mr-3 ">
+				<option  th:each="action3: ${addoffers}"
+					th:text="${action3.getDiscount()}"
+					th:value="${action3.getId()}"></option>
+					</select>
+		    </tr>
+	
+			<button type="submit" class="btn btn-success">Undo Add Offer</button>
+		</form>
+	
+	<br/><br/><br/>
+	
+	<tr th:each="buystore : ${buystores}">
+	      	<form th:action="buyerHome"  method="POST"  th:object="${user}">	
+			    <td th:text="${buystore.getStore_name()}">Name</td>
+			    <td> 
+				    <td> Products</td>
+		            <td>
+		            	<select id="producttobuy" name="productid" class="form-control ml-3 mr-3 ">
+							<option th:each="product: ${buystore.getStoreproducts()}"
+									th:text="${product.getProduct_name()}" 
+									th:value="${product.getId()}"
+									th:selected="${product.getId()}"
+							>
+						</select>
+						
+					</td>
+					<input style="display:none" th:value="*{type}"  th:field="*{type}">
+					<input style="display:none" th:value="*{first}"  th:field="*{first}">
+				
+			    </td>
+			    <td><button type="submit" id="gotobuy" class="ml-3 btn btn-info">Show to Buy</button></td>
+			    
+			</form>	
+	
+	      </tr>
+	
+	
+	
+	<h3>Sold Out Products :</h3>
+		<p class="form-control" th:each="sold: ${soldout}">
+					<span>Product name : </span>
+					<span  
+							th:text="${sold.getProduct_name()} " 
+					></span>
+					<span>From Store : </span>
+					<span  
+							th:text="${sold.getStore_name()} " 
+					></span>
+		</p>
+		
+	<br/><br/><br/>
+	<h3>Number of Buyers and Views Statistics</h3>
+		<table style="width:100%"><tr><td>
+			<ul class="form-control" th:each="product: ${product}">
+				<li class="list-group">Existing Product  </li>
+				<li class="list-group">Product name : </li>
+				<li   class="list-group"
+						th:text="${product.getProduct_name()} " 
+				></li>
+				<li class="list-group">From Store : </li>
+				<li   class="list-group"
+						th:text="${product.getStore_name()} " 
+				></li>
+				<li class="list-group">No. Of Views : </li>
+				<li  class="list-group" 
+						th:text="${product.getViews()} " 
+				></li>
+				<li class="list-group">No. Of Buyers : </li>
+				<li   class="list-group"
+						th:text="${product.getBuyers()} " 
+				></li>
+				
+			</ul>
+		</td>
+		<td>
+			<ul class="form-control" th:each="sold: ${soldout}">
+			
+						<li class="list-group">Sold Out Product </li>
+						<li class="list-group">Product name : </li>
+						<li class="list-group"  
+								th:text="${sold.getProduct_name()} " 
+						></li>
+						<li class="list-group">From Store : </li>
+						<li  class="list-group" 
+								th:text="${sold.getStore_name()} " 
+						></li>
+						<li class="list-group">No. Of Views : </li>
+						<li   class="list-group"
+								th:text="${sold.getViews()} " 
+						></li>
+						<li class="list-group">No. Of Buyers : </li>
+						<li class="list-group"  
+								th:text="${sold.getBuyers()} " 
+						></li>
+						
+				</ul>
+			</td>
+		</tr>
+	</table>
+	<br/><br/><br/>
+	<table>
+		<tr th:each="maxBought: ${MaxBought}" >
+			<td th:text="${maxBought.getType()}" ></td>
+			<td	th:text="${maxBought.getProductName()}"></td>
+		</tr>
+		<tr th:each="maxViewed: ${MaxViewed}" >
+			<td th:text="${maxViewed.getType()}" ></td>
+			<td	th:text="${maxViewed.getProductName()}"></td>
+		</tr>
+		<tr th:each="miniViewed: ${MiniViewed}" >
+			<td th:text="${miniViewed.getType()}" ></td>
+			<td	th:text="${miniViewed.getProductName()}"></td>
+		</tr>
+		<tr th:each="miniBought: ${MiniBought}" >
+			<td th:text="${miniBought.getType()}" ></td>
+			<td	th:text="${miniBought.getProductName()}"></td>
+		</tr>
+		<tr th:each="totalBuys: ${TotalBuys}" >
+			<td th:text="${totalBuys.getType()}" ></td>
+			<td	th:text="${totalBuys.getProductid()}"></td>
+		</tr>
+	
+		<tr th:each="averageBuys: ${AverageBuys}" >
+			<td th:text="${averageBuys.getType()}" ></td>
+			<td	th:text="${averageBuys.getProductid()}"></td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>

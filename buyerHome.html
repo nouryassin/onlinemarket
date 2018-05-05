@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+	<nav class="navbar navbar-light bg-faded">
+	 
+	    <a class="navbar-brand" href="#">Online Market</a>
+	    <ul class="navbar-nav mr-auto mt-2 ">
+	      <li class="nav-item">
+	        <a class="nav-link active " href="/onlineMarket">Log Out</a>
+	      </li>
+	    </ul>
+	</nav>
+		<table>
+	      <tr th:each="store : ${onlinestore}">
+	      	<form th:action="buyerHome"  method="POST" th:object="${user}"  >	
+			    <td th:text="${store.getStore_name()}">Name</td>
+			    <td> 
+				    <td> Products</td>
+		            <td>
+		            	<select id="producttobuy" name="productid" class="form-control ml-3 mr-3 ">
+							<option th:each="product: ${store.getStoreproducts()}"
+									th:text="${product.getProduct_name()}" 
+									th:value="${product.getId()}"
+									th:selected="${product.getId()}"
+							>
+						</select>
+						
+					</td>
+					<input style="display:none" th:value="*{type}"  th:field="*{type}">
+					<input style="display:none" th:value="*{first}"  th:field="*{first}">
+			    </td>
+			    <td><button type="submit" id="gotobuy" class="ml-3 btn btn-info">Show to Buy</button></td>
+			    
+			</form>	
+	
+	      </tr>
+	    </table>
+		
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>ShowToEdit</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+	<nav class="navbar navbar-light bg-faded">
+	    <a class="navbar-brand" href="#">Online Market</a>
+	    <ul class="navbar-nav mr-auto mt-2 ">
+	      <li class="nav-item">
+	        <a class="nav-link active " href="/storeownerHome">Go back</a>
+	      </li>
+	    </ul>
+	</nav>
+	<form method="post" th:action="@{/Edit}" th:object="${productstore}">
+	<table>
+        <tr>
+            <td>Product Name :</td>
+            <td><input type="text" disabled class="form-control mr-sm-2" required th:field="*{product_name}" th:value="*{product_name}" /></td>
+        </tr>
+		<tr>
+            <td>Store Name</td>
+            <td><input type="text" disabled class="form-control mr-sm-2"  required  th:value="*{store_name}" th:field="*{store_name}"  /></td>
+        </tr>
+		<tr>
+            <td>Brand Name</td>
+            <td><input type="text" class="form-control mr-sm-2" required  th:value="*{brand_name}" th:field="*{brand_name}" /></td>
+        </tr>
+        <tr>
+            <td>price</td>
+            <td><input type="text" id="price" class="form-control mr-sm-2" required  th:value="*{price}"  th:field="*{price}" /></td>
+        </tr>
+        <tr>
+            <td>its Quantity</td>
+            <td><input type="text" id="quantity" class="form-control mr-sm-2" required  th:value="*{Quantity}"  th:field="*{Quantity}" /></td>
+        </tr>
+        <tr style="display:none">
+            <td><input type="text" class="form-control mr-sm-2" required  th:value="*{id}"  th:field="*{id}" /></td>
+        </tr>
+        
+        <tr>
+            <td><input type="submit" id="submitedit" class="btn btn-outline-success" value="Edit this product" /></td>
+        </tr>
+  	</table>
+	</form>
+	<br/><br/><br/>
+
+</body>
+</html>

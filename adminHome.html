@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>AdminProfile</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script src="webjars/jquery/2.0.3/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-light bg-faded">
+ 
+    <a class="navbar-brand" href="#">Online Market</a>
+    <ul class="navbar-nav mr-auto mt-2 ">
+      <li class="nav-item">
+        <a class="nav-link active " href="/onlineMarket">Log Out</a>
+      </li>
+    </ul>
+</nav>
+<div class="container">
+	<form method="post" th:action="@{/adminHome}" th:object="${product}">
+		<table>
+                <tr>
+                    <td>Product Name:</td>
+                    <td><input id="addProductName" type="text" class="form-control mr-sm-2" required th:field="*{product_name}" /></td>
+                </tr>
+				<tr>
+                    <td>Category:</td>
+                    <td><input type="text" id="addProductCategory" class="form-control mr-sm-2"  required  th:field="*{category}" /></td>
+                </tr>
+				<tr>
+                    <td>low Price:</td>
+                    <td><input type="number" id="lowPrice" class="form-control mr-sm-2" required  th:field="*{low_price}" /></td>
+                </tr>
+                <tr>
+                    <td>high Price:</td>
+                    <td><input type="number" id="highPrice" required class="form-control mr-sm-2" th:field="*{high_price}" /></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" id="addProduct" class="btn btn-outline-success" value="Add Product"/></td>
+                </tr>
+          </table>
+	</form> 
+	<br/><br/><br/>
+	<form method="post" th:action="@{/addBrand}" th:object="${brand}">
+		<table>
+                <tr>
+                    <td>Brand Name:</td>
+                    <td><input id="BrandName" type="text" class="form-control mr-sm-2" required th:field="*{brand_name}" /></td>
+                </tr>
+				<tr>
+                    <td>Category:</td>
+                    <td><input id="BrandCategory" type="text" class="form-control mr-sm-2"  required  th:field="*{brand_category}" /></td>
+                </tr>
+				<tr>
+                    <td><input id="AddBrand" type="submit"class="btn btn-outline-success" value="Add Brand"/></td>
+                </tr>
+          </table>
+	</form> 
+	<br/><br/><br/>
+	<h3>Adding Store Requests</h3>
+	<form method="post" th:action="@{/acceptStore}" >
+	
+		<select name="requestid" class="form-control">
+			<option th:each="storerequest: ${storerequest}" 
+					th:text="${storerequest.getStore_name()}" 
+					th:value="${storerequest.getId()}"
+					th:selected="${storerequest.getId()}"
+			>
+		</select>
+		<button type="submit" id="addStore" class="btn btn-outline-success">Accept Store</button>
+	</form>
+	<br/><br/><br/>
+	<form method="post" th:action="@{/addStat}" th:object="${AdminStatsitics}">
+		<select id="stats" name="type" class="form-control">
+			<option th:value="MaximumBoughtProduct"
+					th:selected="MaximumViewedProduct"
+			>Maximum Viewed Product</option>
+			<option th:value="MaximumBoughtProduct"
+					th:selected="MaximumBoughtProduct"
+			>Maximum Bought Product</option>
+			<option th:value="MinimumViewedProduct"
+					th:selected="MinimumViewedProduct"
+			>Minimum Viewed Product</option>
+			<option th:value="MinimumBoughtProduct"
+					th:selected="MinimumBoughtProduct"
+			>Minimum Bought Product</option>
+			<option th:value="TotalBuyingTimes"
+					th:selected="TotalBuyingTimes"
+			>TotalBuyingTimes</option>
+			<option th:value="AverageBuyingTimes"
+					th:selected="AverageBuyingTimes"
+			>AverageBuyingTimes</option>
+			
+		</select>
+			<button type="submit" id="addStat" class="btn btn-outline-success">Add Statistics to StoreOwner</button>
+	
+	</form>
+	
+	
+	
+	</div>
+	
+    <script type="text/javascript" src="script.js"></script>
+    
+</body>
+</html>
