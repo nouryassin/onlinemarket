@@ -14,7 +14,7 @@ import com.example.demo.repositories.productRepository;
 import com.example.demo.repositories.storeRequestRepository;
 
 @Controller
-public class brandController {
+public class brandController {/** controller for brand entity */
 
 	@Autowired
 	private BrandRepository brandRepo;
@@ -22,7 +22,7 @@ public class brandController {
 	@Autowired
 	storeRequestRepository storeRequestRepo;
 	
-	@PostMapping("/addBrand")
+	@PostMapping("/addBrand")/** saves a new brand to the market */
 	public String AddBrand(Model model,@ModelAttribute Brand brand) {
 		
 		brandRepo.save(brand);

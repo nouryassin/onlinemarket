@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,20 +20,26 @@ import com.example.demo.repositories.storeRequestRepository;
 import com.example.demo.repositories.userRepository;
 
 @Controller
-public class productController {
+public class productController {/** for saving product */
 	@Autowired
 	private productRepository productRepo;
 	
 	@Autowired 
 	private storeRequestRepository storeRequestRepo;
 
-	@PostMapping("/adminHome")
+	@PostMapping("/adminHome") /** saves product to specific store */
 	public String AddProduct(Model model,@ModelAttribute Product product) {
-		productRepo.save(product);
-		model.addAttribute("product",new Product());
-		model.addAttribute("brand",new Brand());
-		model.addAttribute("storerequest",storeRequestRepo.findAll());
-		return "adminHome";
+		System.out.println(product.getHigh_price());
+		if(product.getHigh_price()<0||product.getLow_price()<0) {
+			return "error";
+		}
+		else{
+			productRepo.save(product);
+			model.addAttribute("product",new Product());
+			model.addAttribute("brand",new Brand());
+			model.addAttribute("storerequest",storeRequestRepo.findAll());
+			return "adminHome";
+		}
 	}
 	
 
