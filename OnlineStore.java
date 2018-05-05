@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -31,6 +32,27 @@ public class OnlineStore {
 	 private List<ProductStore> storeproducts;
 	
 	
+	@ManyToOne(fetch=FetchType.LAZY,targetEntity=User.class)
+ 	@JoinColumn(name="storeowner_id")
+ 	private User storeowner;
+	public User getStoreowner() {
+		return storeowner;
+	}
+	public void setStoreowner(User storeowner) {
+		this.storeowner = storeowner;
+	}
+	@ManyToOne(fetch=FetchType.LAZY,targetEntity=collaborator.class)
+ 	@JoinColumn(name="collaborator_id")
+ 	private collaborator collaborator;
+	public collaborator getCollaborator() {
+		return collaborator;
+	}
+
+	public void setCollaborator(collaborator collaborator) {
+		this.collaborator = collaborator;
+	}
+	
+
 	public List<ProductStore> getStoreproducts() {
 		return storeproducts;
 	}
