@@ -9,7 +9,7 @@ public class SoldOutProduct {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
-	private int store_id;
+	private int storeid;
 	private String product_name;
 	private String store_name;
 	private int views;
@@ -33,11 +33,11 @@ public class SoldOutProduct {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public int getStore_id() {
-		return store_id;
+	public int getStoreid() {
+		return storeid;
 	}
-	public void setStore_id(int store_id) {
-		this.store_id = store_id;
+	public void setStoreid(int storeid) {
+		this.storeid = storeid;
 	}
 	public String getProduct_name() {
 		return product_name;
